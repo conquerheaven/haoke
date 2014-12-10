@@ -137,8 +137,12 @@ try {
 						$shoukuanqk = $row['name'];
 					}
 					//echo $shoukuanqk;
-					echo '<tr class="info">'.
-							'<td>'.$time.'</td>'.
+					if($shoukuanqk=='已结算' || $shoukuanqk=='已过账') echo '<tr class="success">';
+					else if($shoukuanqk=='回单' || $shoukuanqk=='已打印') echo '<tr class="info">';
+					else if($shoukuanqk=='未打印') echo '<tr class="primary">';
+					else if($shoukuanqk=='申请作废' || $shoukuanqk=='已申请作废') echo '<tr class="warning">';
+					else echo '<tr class="danger">';
+					echo '<td>'.$time.'</td>'.
 							'<td>'.$class.'</td>'.
 							'<td>'.$name.'</td>'.
 							'<td>'.$xinghao.'</td>'.
