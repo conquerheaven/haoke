@@ -4,9 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=GBK">
 <title>产品销售查询</title>
 	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
-	<link href="../bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" media="all" href="../bootstrap/css/daterangepicker-bs3.css" />
 	<script type="text/javascript" src="../bootstrap/js/jquery-1.8.3.min.js"></script>
@@ -74,7 +74,7 @@
 </head>
 <body>
 	<h1 align="center">产品销售查询</h1>
-        <div class="container-fluid well">
+        <div class="container well">
             <form action="" method="get">
           
             选择日期：  <input id="reportrange" name="riqi" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" value="2014-01-01 - 2014-01-01">
@@ -121,10 +121,13 @@
 
 				&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="Req();" value="查询" />
 				</form>
-<table class="table table-hover table-bordered table-striped" valign="center">
+				</div>
+				<div class="container-fluid table-responsive well">
+<table class="table table-bordered table-condensed table-striped table-hover">
 	<thead>
 		<tr>
-			<th  style="text-align:center">序号</th>
+			<th  style="text-align:center">#</th>
+			<th  style="text-align:center">单号</th>
 			<th  style="text-align:center">下单时间</th>
 			<th  style="text-align:center">大类</th>
 			<th  style="text-align:center">产品名称</th>
@@ -134,7 +137,6 @@
 			<th  style="text-align:center">数量</th>
 			<th  style="text-align:center">单价</th>
 			<th  style="text-align:center">小计</th>
-			<th  style="text-align:center">单号</th>
 			<th  style="text-align:center">订单状态</th>
 			<th  style="text-align:center">收款方式</th>
 			<th  style="text-align:center">托运部</th>
@@ -147,7 +149,6 @@
 	<tbody id="webpage"  style="text-align:center">
 	</tbody>
 </table>
-				
 				
         </div>
 
