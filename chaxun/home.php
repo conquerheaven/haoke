@@ -7,10 +7,10 @@
 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="../bootstrap/css/bootstrap-theme.css" rel="stylesheet">
-	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+	<link href="../bootstrap/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" media="all" href="../bootstrap/css/daterangepicker-bs3.css" />
 	<script type="text/javascript" src="../bootstrap/js/jquery-1.8.3.min.js"></script>
-	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/moment.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/daterangepicker.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/ajax.js"></script>
