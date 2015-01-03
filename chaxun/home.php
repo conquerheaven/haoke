@@ -78,13 +78,19 @@
             <form action="" method="get">
           
             选择日期：  <input id="reportrange" name="riqi" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" value="2014-01-01 - 2014-01-01">
-			&nbsp;&nbsp;&nbsp;&nbsp;省份：<select id="province" name="province" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetCity()"> 
+			&nbsp;&nbsp;&nbsp;&nbsp;地区：<select id="area" name="area" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetProvince()"> 
 			<option value="all">全部</option>
-			<?php foreach ($provinces as $province ):
-			echo  $province;
+			<?php foreach ($areas as $area ):
+			echo  $area;
 			endforeach;?>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;城市：<select id="city" name="city" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
+			&nbsp;&nbsp;&nbsp;&nbsp;省份：<select id="province" name="province" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetCity()"> 
+			<option value="all">全部</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;城市：<select id="city" name="city" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetXian()"> 
+			<option value="all">全部</option>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;区/县：<select id="xian" name="xian" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
 			<option value="all">全部</option>
 			</select>
               <br><br>产品分类选择：

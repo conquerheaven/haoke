@@ -12,8 +12,10 @@ $end = $_GET['end'];
 $class = $_GET['class'];
 $xinghao = $_GET['xinghao'];
 $yanse = $_GET['yanse'];
+$area = $_GET['area'];
 $province = $_GET['province'];
 $city = $_GET['city'];
+$xian = $_GET['xian'];
 $status = $_GET['status'];
 
 unset($idList);
@@ -87,12 +89,12 @@ function table_caizhi(){
 	}
 }
 
-function table_province($provinceid){
+function table_kehuadd($ID){
 	try {
-		$sql = 'SELECT name FROM province WHERE id="'.$provinceid.'"';
+		$sql = 'SELECT sheng FROM kehuadd WHERE ID="'.$ID.'"';
 		$res = $GLOBALS['pdo']->query($sql);
 		if($row = $res->fetch()){
-			return $row['name'];
+			return $row['sheng'];
 		}
 		return '';
 	} catch (PDOException $e) {
@@ -102,30 +104,17 @@ function table_province($provinceid){
 	}
 }
 
-function table_city($cityid){
-	try {
-		$sql = 'SELECT name FROM city WHERE id="'.$cityid.'"';
-		$res = $GLOBALS['pdo']->query($sql);
-		if($row = $res->fetch()){
-			return $row['name'];
-		}
-		return '';
-	} catch (PDOException $e) {
-		$output = 'Error query city: ' . $e->getMessage();
-		include 'ConnectError.php';
-		exit();
-	}
-}
-
 function table_kehulist(){
 	try {
-		$sql = 'SELECT name,sheng,city,tybid FROM kehulist WHERE ID="'.$GLOBALS['kehuid'].'"';
+		$sql = 'SELECT name,dqid,sheng,city,xian,tybid FROM kehulist WHERE ID="'.$GLOBALS['kehuid'].'"';
 		$res = $GLOBALS['pdo']->query($sql);
 		if($row = $res->fetch()){
+			if($GLOBALS['area'] != 'all' && $GLOBALS['area'] != $row['dqid']) return false;
 			if($GLOBALS['province'] != 'all' && $GLOBALS['province'] != $row['sheng']) return false;
 			if($GLOBALS['city'] != 'all' && $GLOBALS['city'] != $row['city']) return false;
+			if($GLOBALS['xian'] != 'all' && $GLOBALS['xian'] != $row['xian']) return false;
 			$GLOBALS['kehuname'] = $row['name'];
-			$GLOBALS['address'] = table_province($row['sheng']) . table_city($row['city']);
+			$GLOBALS['address'] = table_kehuadd($row['dqid']) . table_kehuadd($row['sheng']) . table_kehuadd($row['city']) . table_kehuadd($row['xian']);
 			$GLOBALS['tuoyunbu'] = $row['tybid'];
 			return true;
 		}

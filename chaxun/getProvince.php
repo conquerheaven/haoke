@@ -11,16 +11,17 @@ $area = $_GET['area'];
 
 try {
 	echo '<option value="all">È«²¿</option>';
-	if($province=='all'){
+	if($area=='all'){
 		exit();
 	}
 	$sql = 'SELECT ID,sheng FROM kehuadd WHERE preid="'.$area.'"';
+	echo $sql;
 	$result = $pdo->query($sql);
 	while($row = $result->fetch()){
 		echo '<option value="' . $row['ID'] . '">' . $row['sheng'] . '</option>';
 	}
 } catch (PDOException $e) {
-	$output = 'Error query city: ' . $e->getMessage();
+	$output = 'Error query province or city: ' . $e->getMessage();
 	include 'ConnectError.php';
 	exit();
 }

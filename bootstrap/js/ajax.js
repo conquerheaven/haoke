@@ -8,12 +8,14 @@
 		var leixing = document.getElementById("class").value;
 		var xinghao = document.getElementById("xinghao").value;
 		var yanse = document.getElementById("yanse").value;
+		var area = document.getElementById("area").value;
 		var province = document.getElementById("province").value;
 		var city = document.getElementById("city").value;
+		var xian = document.getElementById("xian").value;
 		var status = document.getElementById("status").value;
 		var start = riqi.substr(0 , 10);
 		var end = riqi.substr(13 , 10);
-		message = "start="+start+"&end="+end+"&class="+leixing+"&xinghao="+xinghao+"&yanse="+yanse+"&province="+province+"&city="+city+"&status="+status;
+		message = "start="+start+"&end="+end+"&class="+leixing+"&xinghao="+xinghao+"&yanse="+yanse+"&area="+area+"&province="+province+"&city="+city+"&xian="+xian+"&status="+status;
 	}
 	function CreateXMLHttpRequest(){
 		if(window.ActiveXObject){

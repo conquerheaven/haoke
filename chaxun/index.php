@@ -1,14 +1,14 @@
 <?php
 include 'ConnectDatabase.php';
-//获取省份
+//获取地区
 try {
-	$sql= 'SELECT * FROM province';
+	$sql= 'SELECT * FROM kehuadd where preid = 0';
 	$result = $pdo->query($sql);
 	while($row = $result->fetch()){
-		$provinces[] = '<option value="' . $row['id'] . '">' . $row['name'] . '</option>';
+		$areas[] = '<option value="' . $row['ID'] . '">' . $row['sheng'] . '</option>';
 	}
 } catch (PDOException $e){
-	$output = 'Error fetching province: ' . $e->getMessage();
+	$output = 'Error fetching areas: ' . $e->getMessage();
 	include 'ConnectError.php';
 	exit();
 }
