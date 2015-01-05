@@ -8,7 +8,7 @@
 	<link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="../bootstrap/css/bootstrap-theme.css" rel="stylesheet">
 	<link href="../bootstrap/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" media="all" href="../bootstrap/css/daterangepicker-bs3.css" />
+	<link href="../bootstrap/css/daterangepicker-bs3.css" rel="stylesheet">
 	<script type="text/javascript" src="../bootstrap/js/jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/moment.js"></script>
@@ -128,11 +128,10 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="Req();" value="查询" />
 				</form>
 				</div>
-				<div class="container-fluid table-responsive well">
-<table class="table table-bordered table-condensed table-striped table-hover">
+				<div class="container-fluid well" id = "webpage" style="overflow:auto;">
+<!-- <table class="table table-bordered table-condensed table-striped table-hover">
 	<thead>
 		<tr>
-			<th  style="text-align:center">#</th>
 			<th  style="text-align:center">单号</th>
 			<th  style="text-align:center">下单时间</th>
 			<th  style="text-align:center">大类</th>
@@ -154,7 +153,7 @@
 	
 	<tbody id="webpage"  style="text-align:center">
 	</tbody>
-</table>
+</table> -->
 				
         </div>
 

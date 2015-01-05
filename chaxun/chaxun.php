@@ -43,7 +43,32 @@ $fuzeren;
 $color;
 $leixing;
 $style;
-$xuhao = 1;
+
+$Finish = 0;
+$Unfinish = 0;
+
+$Output = '<table class="table table-bordered table-condensed table-striped table-hover" id = "webpage" style="font-size:5px">
+		<thead>
+		<tr>
+			<th  style="text-align:center">单号</th>
+			<th  style="text-align:center">下单时间</th>
+			<th  style="text-align:center">大类</th>
+			<th  style="text-align:center">产品名称</th>
+			<th  style="text-align:center">产品型号</th>
+			<th  style="text-align:center">材质</th>
+			<th  style="text-align:center">颜色</th>
+			<th  style="text-align:center">数量</th>
+			<th  style="text-align:center">单价</th>
+			<th  style="text-align:center">小计</th>
+			<th  style="text-align:center">订单状态</th>
+			<th  style="text-align:center">收款方式</th>
+			<th  style="text-align:center">托运部</th>
+			<th  style="text-align:center">客户地区</th>
+			<th  style="text-align:center">客户名称</th>
+			<th  style="text-align:center">负责人</th>
+		</tr>
+	</thead>
+	<tbody style="text-align:center">';
 
 $empty = true;
 
@@ -163,12 +188,11 @@ function table_tuoyunbu(){
 
 function show(){
 	$GLOBALS['empty'] = false;
-	if($GLOBALS['shoukuanqk']=='已结算' || $GLOBALS['shoukuanqk']=='已过账') echo '<tr class="success">';
-	else if($GLOBALS['shoukuanqk']=='未打印' || $GLOBALS['shoukuanqk']=='已打印') echo '<tr class="primary">';
-	else if($GLOBALS['shoukuanqk']=='申请作废' || $GLOBALS['shoukuanqk']=='已申请作废') echo '<tr class="warning">';
-	else echo '<tr class="danger">';
-	echo '<td>'.$GLOBALS['xuhao'].'</td>'.
-			'<td>'.$GLOBALS['danhao'].'</td>'.
+	if($GLOBALS['shoukuanqk']=='已结算' || $GLOBALS['shoukuanqk']=='已过账') $GLOBALS['Output'] .= '<tr class="success">';
+	else if($GLOBALS['shoukuanqk']=='未打印' || $GLOBALS['shoukuanqk']=='已打印') $GLOBALS['Output'] .= '<tr class="primary">';
+	else if($GLOBALS['shoukuanqk']=='申请作废' || $GLOBALS['shoukuanqk']=='已申请作废') $GLOBALS['Output'] .= '<tr class="warning">';
+	else $GLOBALS['Output'] .= '<tr class="danger">';
+	$GLOBALS['Output'] .= '<td>'.$GLOBALS['danhao'].'</td>'.
 			'<td>'.$GLOBALS['time'].'</td>'.
 			'<td>'.$GLOBALS['leixing'].'</td>'.
 			'<td>'.$GLOBALS['name'].'</td>'.
@@ -185,7 +209,8 @@ function show(){
 			'<td>'.$GLOBALS['kehuname'].'</td>'.
 			'<td>'.$GLOBALS['fuzeren'].'</td>'.
 			'</tr>';
-	$GLOBALS['xuhao']++;
+	if($GLOBALS['shoukuanqk'] == '已结算') $GLOBALS['Finish'] += $GLOBALS['sum'];
+	else $GLOBALS['Unfinish'] += $GLOBALS['sum'];
 }
 
 function table_ddmessage(){
@@ -292,6 +317,8 @@ function table_products(){
 }
 
 table_products();
+echo '<h4 align="center">已结算：' . $Finish . '元  未结算：' . $Unfinish . '元  总交易额：' . ($Finish+$Unfinish) . '元</h4>';
+echo $Output . '</tbody></table>';
 if($empty){
 	echo '没有任何关于此类产品信息';
 }
