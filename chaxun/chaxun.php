@@ -48,6 +48,7 @@ $style;
 
 $Finish = 0;
 $Unfinish = 0;
+$Final_num = 0;
 
 $Output = '<table class="table table-bordered table-condensed table-striped table-hover" id = "webpage" style="font-size:5px">
 		<thead>
@@ -219,6 +220,7 @@ function show(){
 			'</tr>';
 	if($GLOBALS['shoukuanqk'] == '已结算') $GLOBALS['Finish'] += $GLOBALS['sum'];
 	else $GLOBALS['Unfinish'] += $GLOBALS['sum'];
+	$GLOBALS['Final_num'] += $GLOBALS['num'];
 }
 
 function table_ddmessage(){
@@ -325,7 +327,7 @@ function table_products(){
 }
 
 table_products();
-echo '<h4 align="center">已结算：' . $Finish . '元  未结算：' . $Unfinish . '元  总交易额：' . ($Finish+$Unfinish) . '元</h4>';
+echo '<h4 align="center">【已结算：' . $Finish . '元】【 未结算：' . $Unfinish . '元】【总交易额：' . ($Finish+$Unfinish) . '元】【总交易量：' . $Final_num .'个】</h4>';
 echo $Output . '</tbody></table>';
 if($empty){
 	echo '没有任何关于此类产品信息';
