@@ -34,7 +34,9 @@ $num;
 $time;
 $kehuid;
 $kehuname;
-$address;
+$addr_sheng;
+$addr_shi;
+$addr_xian;
 $danhao;
 $tuoyunbu;
 $shoukuanfs;
@@ -63,7 +65,9 @@ $Output = '<table class="table table-bordered table-condensed table-striped tabl
 			<th  style="text-align:center">订单状态</th>
 			<th  style="text-align:center">收款方式</th>
 			<th  style="text-align:center">托运部</th>
-			<th  style="text-align:center">客户地区</th>
+			<th  style="text-align:center">省</th>
+			<th  style="text-align:center">市</th>
+			<th  style="text-align:center">县/区</th>
 			<th  style="text-align:center">客户名称</th>
 			<th  style="text-align:center">负责人</th>
 		</tr>
@@ -139,7 +143,9 @@ function table_kehulist(){
 			if($GLOBALS['city'] != 'all' && $GLOBALS['city'] != $row['city']) return false;
 			if($GLOBALS['xian'] != 'all' && $GLOBALS['xian'] != $row['xian']) return false;
 			$GLOBALS['kehuname'] = $row['name'];
-			$GLOBALS['address'] = table_kehuadd($row['dqid']) . table_kehuadd($row['sheng']) . table_kehuadd($row['city']) . table_kehuadd($row['xian']);
+			$GLOBALS['addr_sheng'] = table_kehuadd($row['sheng']);
+			$GLOBALS['addr_shi'] = table_kehuadd($row['city']);
+			$GLOBALS['addr_xian'] = table_kehuadd($row['xian']);
 			$GLOBALS['tuoyunbu'] = $row['tybid'];
 			return true;
 		}
@@ -188,9 +194,9 @@ function table_tuoyunbu(){
 
 function show(){
 	$GLOBALS['empty'] = false;
-	if($GLOBALS['shoukuanqk']=='已结算' || $GLOBALS['shoukuanqk']=='已过账') $GLOBALS['Output'] .= '<tr class="success">';
-	else if($GLOBALS['shoukuanqk']=='未打印' || $GLOBALS['shoukuanqk']=='已打印') $GLOBALS['Output'] .= '<tr class="primary">';
-	else if($GLOBALS['shoukuanqk']=='申请作废' || $GLOBALS['shoukuanqk']=='已申请作废') $GLOBALS['Output'] .= '<tr class="warning">';
+	if($GLOBALS['shoukuanqk']=='0') $GLOBALS['shoukuanqk'] = '下单未发货';
+	if($GLOBALS['shoukuanqk']=='已结算') $GLOBALS['Output'] .= '<tr class="success">';
+	else if($GLOBALS['shoukuanqk']=='下单未发货') $GLOBALS['Output'] .= '<tr class="info">';
 	else $GLOBALS['Output'] .= '<tr class="danger">';
 	$GLOBALS['Output'] .= '<td>'.$GLOBALS['danhao'].'</td>'.
 			'<td>'.$GLOBALS['time'].'</td>'.
@@ -205,7 +211,9 @@ function show(){
 			'<td>'.$GLOBALS['shoukuanqk'].'</td>'.
 			'<td>'.$GLOBALS['shoukuanfs'].'</td>'.
 			'<td>'.$GLOBALS['tuoyunbu'].'</td>'.
-			'<td>'.$GLOBALS['address'].'</td>'.
+			'<td>'.$GLOBALS['addr_sheng'].'</td>'.
+			'<td>'.$GLOBALS['addr_shi'].'</td>'.
+			'<td>'.$GLOBALS['addr_xian'].'</td>'.
 			'<td>'.$GLOBALS['kehuname'].'</td>'.
 			'<td>'.$GLOBALS['fuzeren'].'</td>'.
 			'</tr>';
@@ -215,7 +223,7 @@ function show(){
 
 function table_ddmessage(){
 	try {
-		$sql = 'SELECT piaohao,kehuid,xiadangtime,shoukuanfs,stats,chaozuoren,productsid FROM ddmessage WHERE xiadangtime BETWEEN "'.$GLOBALS['start'].'" and "'.$GLOBALS['end'].'" ORDER BY xiadangtime';
+		$sql = 'SELECT piaohao,kehuid,xiadangtime,shoukuanfs,stats,chaozuoren,productsid FROM ddmessage WHERE stats <> 6 and xiadangtime BETWEEN "'.$GLOBALS['start'].'" and "'.$GLOBALS['end'].'" ORDER BY xiadangtime';
 		$result = $GLOBALS['pdo']->query($sql);
 		//echo $sql;
 		$ary=array('1','2','3','4','5','6','7','8','9','0');
@@ -273,7 +281,7 @@ function table_ddmessage(){
 						table_tuoyunbu();
 						show();
 					}
-					break;
+					//break;
 				}else $i += 3;
 				$i++;
 			}
@@ -287,11 +295,11 @@ function table_ddmessage(){
 
 function table_products(){
 	try {
-		$sql = 'SELECT ID,name,caizhi,idname,classid,yanshe FROM products';
+		$sql = 'SELECT ID,name,caizhi,idname,classid,yanshe FROM products WHERE idname LIKE "%'.$GLOBALS['xinghao'].'%"';
 		$result = $GLOBALS['pdo']->query($sql);
 		$flag = false;
 		while($row = $result->fetch()){
-			if($GLOBALS['xinghao'] != 'all' && $row['idname'] != $GLOBALS['xinghao']) continue;
+			//if($GLOBALS['xinghao'] != 'all' && $row['idname'] != $GLOBALS['xinghao']) continue;
 			if($GLOBALS['class'] != 'all' && $row['classid'] != $GLOBALS['class']) continue;
 			if($GLOBALS['yanse'] != 'all' && $row['yanshe'] != $GLOBALS['yanse']) continue;
 			$GLOBALS['styleList'][] = $row['idname'];

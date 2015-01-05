@@ -73,11 +73,11 @@
     </script>
 </head>
 <body>
-	<h1 align="center">产品销售查询</h1>
+	<h3 align="center">产品销售查询</h3>
         <div class="container well">
-            <form action="" method="get">
+            <form action="" method="get" style="font-size: 12px;">
           
-            选择日期：  <input id="reportrange" name="riqi" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" value="2014-01-01 - 2014-01-01">
+            选择日期：  <input id="reportrange" name="riqi" style="width:200px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" value="2014-01-01 - 2014-01-01">
 			&nbsp;&nbsp;&nbsp;&nbsp;地区：<select id="area" name="area" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetProvince()"> 
 			<option value="all">全部</option>
 			<?php foreach ($areas as $area ):
@@ -101,13 +101,7 @@
 			endforeach;?>
 			</select> 
 				&nbsp;&nbsp;&nbsp;&nbsp;型号：
-
-			<select id="xinghao" name="xinghao" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="all">全部</option>
-			<?php foreach ($xinghao as $xing ):
-			echo $xing;
-			endforeach;?>
-			</select> 
+			<input id="xinghao" name="xinghao" type="text" class="input-small" placeholder="全部">
 
 				&nbsp;&nbsp;&nbsp;&nbsp;颜色：
 
@@ -120,15 +114,15 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;订单状态：
 			<select id="status" name="status" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
 			<option value="all">全部</option>
-			<?php foreach ($status as $sta ):
-			echo $sta;
-			endforeach;?>
+			<option value="0">下单未发货</option>
+			<option value="3">已结算</option>
+			<option value="5">回单</option>
 			</select> 
 
 				&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="Req();" value="查询" />
 				</form>
 				</div>
-				<div class="container-fluid well" id = "webpage" style="overflow:auto;">
+				<div class="container-fluid well" id = "webpage">
 <!-- <table class="table table-bordered table-condensed table-striped table-hover">
 	<thead>
 		<tr>

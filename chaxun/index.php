@@ -48,17 +48,5 @@ try {
 	include 'ConnectError.php';
 	exit();
 }
-//»ñµÃ¶©µ¥×´Ì¬
-try {
-	$sql= 'SELECT * FROM jiaoyistats';
-	$result = $pdo->query($sql);
-	while($row = $result->fetch()){
-		$status[] = '<option value="' . $row['ID'] . '">' . $row['name'] . '</option>';
-	}
-} catch (PDOException $e){
-	$output = 'Error fetching jiaoyistats: ' . $e->getMessage();
-	include 'ConnectError.php';
-	exit();
-}
 
 include 'home.php';
