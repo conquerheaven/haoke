@@ -39,6 +39,7 @@ $addr_shi;
 $addr_xian;
 $danhao;
 $tuoyunbu;
+$tuoyunhao;
 $shoukuanfs;
 $shoukuanqk;
 $fuzeren;
@@ -65,6 +66,7 @@ $Output = '<table class="table table-bordered table-condensed table-striped tabl
 			<th  style="text-align:center">小计</th>
 			<th  style="text-align:center">订单状态</th>
 			<th  style="text-align:center">收款方式</th>
+			<th  style="text-align:center">托运号</th>
 			<th  style="text-align:center">托运部</th>
 			<th  style="text-align:center">省</th>
 			<th  style="text-align:center">市</th>
@@ -211,6 +213,7 @@ function show(){
 			'<td>'.$GLOBALS['sum'].'</td>'.
 			'<td>'.$GLOBALS['shoukuanqk'].'</td>'.
 			'<td>'.$GLOBALS['shoukuanfs'].'</td>'.
+			'<td>'.$GLOBALS['tuoyunhao'].'</td>'.
 			'<td>'.$GLOBALS['tuoyunbu'].'</td>'.
 			'<td>'.$GLOBALS['addr_sheng'].'</td>'.
 			'<td>'.$GLOBALS['addr_shi'].'</td>'.
@@ -225,7 +228,7 @@ function show(){
 
 function table_ddmessage(){
 	try {
-		$sql = 'SELECT piaohao,kehuid,xiadangtime,shoukuanfs,stats,chaozuoren,productsid FROM ddmessage WHERE stats <> 6 and xiadangtime BETWEEN "'.$GLOBALS['start'].'" and "'.$GLOBALS['end'].'" ORDER BY xiadangtime';
+		$sql = 'SELECT piaohao,tuoyunhao,kehuid,xiadangtime,shoukuanfs,stats,chaozuoren,productsid FROM ddmessage WHERE stats <> 6 and xiadangtime BETWEEN "'.$GLOBALS['start'].'" and "'.$GLOBALS['end'].'" ORDER BY xiadangtime';
 		$result = $GLOBALS['pdo']->query($sql);
 		//echo $sql;
 		$ary=array('1','2','3','4','5','6','7','8','9','0');
@@ -276,6 +279,7 @@ function table_ddmessage(){
 						$GLOBALS['shoukuanfs'] = $row['shoukuanfs'];
 						$GLOBALS['shoukuanqk'] = $row['stats'];
 						$GLOBALS['fuzeren'] = $row['chaozuoren'];
+						$GLOBALS['tuoyunhao'] = $row['tuoyunhao'];
 						table_caizhi();
 						table_productclass();
 						table_yanse();
