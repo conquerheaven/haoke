@@ -123,31 +123,6 @@
 				</form>
 				</div>
 				<div class="container-fluid well" id = "webpage">
-<!-- <table class="table table-bordered table-condensed table-striped table-hover">
-	<thead>
-		<tr>
-			<th  style="text-align:center">单号</th>
-			<th  style="text-align:center">下单时间</th>
-			<th  style="text-align:center">大类</th>
-			<th  style="text-align:center">产品名称</th>
-			<th  style="text-align:center">产品型号</th>
-			<th  style="text-align:center">材质</th>
-			<th  style="text-align:center">颜色</th>
-			<th  style="text-align:center">数量</th>
-			<th  style="text-align:center">单价</th>
-			<th  style="text-align:center">小计</th>
-			<th  style="text-align:center">订单状态</th>
-			<th  style="text-align:center">收款方式</th>
-			<th  style="text-align:center">托运部</th>
-			<th  style="text-align:center">客户地区</th>
-			<th  style="text-align:center">客户名称</th>
-			<th  style="text-align:center">负责人</th>
-		</tr>
-	</thead>
-	
-	<tbody id="webpage"  style="text-align:center">
-	</tbody>
-</table> -->
 				
         </div>
 
