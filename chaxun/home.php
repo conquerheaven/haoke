@@ -10,6 +10,7 @@
 	<link href="../bootstrap/css/font-awesome.min.css" rel="stylesheet">
 	<link href="../bootstrap/css/daterangepicker-bs3.css" rel="stylesheet">
 	<script type="text/javascript" src="../bootstrap/js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/moment.js"></script>
 	<script type="text/javascript" src="../bootstrap/js/daterangepicker.js"></script>
@@ -93,6 +94,8 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;区/县：<select id="xian" name="xian" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
 			<option value="all">全部</option>
 			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input id="kehu" name="kehu" type="text" style="width: 100px" placeholder="客户名称（全部）">
               <br><br>产品分类选择：
 			<select id="class" name="class" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
 			<option value="all">全部</option>
@@ -100,8 +103,8 @@
 			echo  $cla;
 			endforeach;?>
 			</select> 
-				&nbsp;&nbsp;&nbsp;&nbsp;型号：
-			<input id="xinghao" name="xinghao" type="text" class="input-small" placeholder="全部">
+				&nbsp;&nbsp;&nbsp;&nbsp;
+			<input id="xinghao" name="xinghao" type="text" style="width: 80px" placeholder="型号（全部）">
 
 				&nbsp;&nbsp;&nbsp;&nbsp;颜色：
 
@@ -111,18 +114,50 @@
 			echo $yan;
 			endforeach;?>
 			</select> 
-				&nbsp;&nbsp;&nbsp;&nbsp;订单状态：
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input id="shoukuanfs" name="shoukuanfs" type="text" style="width: 100px" placeholder="收款方式（全部）">
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input id="huikuantongdao" name="huikuantongdao" type="text" style="width: 100px" placeholder="回款通道（全部）">
+			
+				<br><br>订单状态：
 			<select id="status" name="status" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
 			<option value="all">全部</option>
 			<option value="0">下单未发货</option>
 			<option value="3">已结算</option>
 			<option value="5">回单</option>
 			</select> 
+			&nbsp;&nbsp;&nbsp;&nbsp;客户负责人：
+			<select id="fuzeren" name="fuzeren" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
+			<option value="all">全部</option>
+			<?php foreach ($user as $u ):
+			echo $u;
+			endforeach;?>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;开单人：
+			<select id="kaidanren" name="kaidanren" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
+			<option value="all">全部</option>
+			<?php foreach ($user as $u ):
+			echo $u;
+			endforeach;?>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;发货人：
+			<select id="fahuoren" name="fahuoren" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
+			<option value="all">全部</option>
+			<?php foreach ($fahuoren as $f ):
+			echo $f;
+			endforeach;?>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input id="tuoyunbu" name="tuoyunbu" type="text" style="width: 85px" placeholder="托运部（全部）">
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input id="tuoyunhao" name="tuoyunhao" type="text" style="width: 100px" placeholder="托运单号（全部）">
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input id="tuoyunhao" name="tuoyunhao" type="text" style="width: 100px" placeholder="电脑单号（全部）">
 
 				&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="Req();" value="查询" />
 				</form>
 				</div>
-				<div class="container-fluid well" id = "webpage">
+				<div class="container-fluid well" id = "webpage" data-spy="scroll" data-target="#navbar-example" data-offset="0" style="width:110%;height:55%;overflow:auto; position: relative;" class="table-bordered table-condensed">
 				
         </div>
 

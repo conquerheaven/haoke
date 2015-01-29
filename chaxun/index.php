@@ -48,5 +48,30 @@ try {
 	include 'ConnectError.php';
 	exit();
 }
+//获取用户
+try {
+	$sql = 'SELECT UserName FROM adminname';
+	$result = $pdo->query($sql);
+	while($row = $result->fetch()){
+		$user[] = '<option value="' . $row['UserName'] . '">' . $row['UserName'] . '</option>';
+	}
+} catch (PDOException $e) {
+	$output = 'Error fetching user: ' . $e->getMessage();
+	include 'ConnectError.php';
+	exit();
+}
+
+//获取送货人
+try {
+	$sql = 'SELECT distinct fhr FROM ddmessage';
+	$result = $pdo->query($sql);
+	while($row = $result->fetch()){
+		$fahuoren[] = '<option value="' . $row['fhr'] . '">' . $row['fhr'] . '</option>';
+	}
+} catch (PDOException $e) {
+	$output = 'Error fetching fahuoren: ' . $e->getMessage();
+	include 'ConnectError.php';
+	exit();
+}
 
 include 'home.php';
