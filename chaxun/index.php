@@ -48,15 +48,28 @@ try {
 	include 'ConnectError.php';
 	exit();
 }
-//获取用户
+//获取开单人
 try {
-	$sql = 'SELECT UserName FROM adminname';
+	$sql = 'SELECT distinct chaozuoren FROM ddmessage';
 	$result = $pdo->query($sql);
 	while($row = $result->fetch()){
-		$user[] = '<option value="' . $row['UserName'] . '">' . $row['UserName'] . '</option>';
+		$kaidanren[] = '<option value="' . $row['chaozuoren'] . '">' . $row['chaozuoren'] . '</option>';
 	}
 } catch (PDOException $e) {
-	$output = 'Error fetching user: ' . $e->getMessage();
+	$output = 'Error fetching kaidanren: ' . $e->getMessage();
+	include 'ConnectError.php';
+	exit();
+}
+
+//获取客户负责人
+try {
+	$sql = 'SELECT distinct fuzheren FROM kehulist';
+	$result = $pdo->query($sql);
+	while($row = $result->fetch()){
+		$kehufuzeren[] = '<option value="' . $row['fuzheren'] . '">' . $row['fuzheren'] . '</option>';
+	}
+} catch (PDOException $e) {
+	$output = 'Error fetching kehufuzeren: ' . $e->getMessage();
 	include 'ConnectError.php';
 	exit();
 }
@@ -73,5 +86,19 @@ try {
 	include 'ConnectError.php';
 	exit();
 }
+
+//获取品牌
+try {
+	$sql = 'SELECT pingpai FROM  kehulist WHERE pingpai <>  ""';
+	$result = $pdo->query($sql);
+	while($row = $result->fetch()){
+		$pinpai[] = '<option value="' . $row['pingpai'] . '">' . $row['pingpai'] . '</option>';
+	}
+} catch (PDOException $e) {
+	$output = 'Error fetching pinpai: ' . $e->getMessage();
+	include 'ConnectError.php';
+	exit();
+}
+
 
 include 'home.php';

@@ -17,6 +17,14 @@ $province = $_GET['province'];
 $city = $_GET['city'];
 $xian = $_GET['xian'];
 $status = $_GET['status'];
+$proname = $_GET['proname'];
+$pinpai = $_GET['pinpai'];
+$kehufuzeren = $_GET['fuzeren'];
+$kaidanren = $_GET['kaidanren'];
+$jiajucheng = $_GET['jiajucheng'];
+$kehu = $_GET['kehu'];
+$fahuoren = $_GET['fahuoren'];
+$tuoyun = $_GET['tuoyunbu'];
 
 unset($idList);
 unset($colorList);
@@ -37,21 +45,23 @@ $kehuname;
 $addr_sheng;
 $addr_shi;
 $addr_xian;
-$danhao;
+$danhao = $_GET['danhao'];
 $tuoyunbu;
-$tuoyunhao;
-$shoukuanfs;
+$tuoyunhao = $_GET['tuoyunhao'];
+$shoukuanfs = $_GET['shoukuanfs'];
 $shoukuanqk;
 $fuzeren;
 $color;
 $leixing;
 $style;
+$shoukuanri;
+$fhr;
 
 $Finish = 0;
 $Unfinish = 0;
 $Final_num = 0;
 
-$Output = '<table class="table table-bordered table-condensed table-striped table-hover" id = "webpage" style="font-size:5px">
+$Output = '<table class="table table-bordered table-condensed table-striped table-hover" style="font-size:5px">
 		<thead>
 		<tr>
 			<th  style="text-align:center">单号</th>
@@ -68,11 +78,14 @@ $Output = '<table class="table table-bordered table-condensed table-striped tabl
 			<th  style="text-align:center">收款方式</th>
 			<th  style="text-align:center">托运号</th>
 			<th  style="text-align:center">托运部</th>
+			<th  style="text-align:center">发货人</th>
 			<th  style="text-align:center">省</th>
 			<th  style="text-align:center">市</th>
 			<th  style="text-align:center">县/区</th>
 			<th  style="text-align:center">客户名称</th>
-			<th  style="text-align:center">负责人</th>
+			<th  style="text-align:center">客户负责人</th>
+			<th  style="text-align:center">开单人</th>
+			<th  style="text-align:center">收款日期</th>
 		</tr>
 	</thead>
 	<tbody style="text-align:center">';
@@ -138,18 +151,22 @@ function table_kehuadd($ID){
 
 function table_kehulist(){
 	try {
-		$sql = 'SELECT name,dqid,sheng,city,xian,tybid FROM kehulist WHERE ID="'.$GLOBALS['kehuid'].'"';
+		$sql = 'SELECT name,dqid,sheng,city,xian,tybid,pingpai,fuzheren FROM kehulist WHERE ID="'.$GLOBALS['kehuid'].'" AND name LIKE "%'.$GLOBALS['kehu'].'%" AND scname LIKE "%'.$GLOBALS['jiajucheng'].'%"';
+		//echo '#'.$GLOBALS['fuzeren'];
 		$res = $GLOBALS['pdo']->query($sql);
 		if($row = $res->fetch()){
 			if($GLOBALS['area'] != 'all' && $GLOBALS['area'] != $row['dqid']) return false;
 			if($GLOBALS['province'] != 'all' && $GLOBALS['province'] != $row['sheng']) return false;
 			if($GLOBALS['city'] != 'all' && $GLOBALS['city'] != $row['city']) return false;
 			if($GLOBALS['xian'] != 'all' && $GLOBALS['xian'] != $row['xian']) return false;
+			if($GLOBALS['pinpai'] != 'all' && $GLOBALS['pinpai'] != $row['pingpai']) return false;
+			if($GLOBALS['kehufuzeren'] != 'all' && $GLOBALS['kehufuzeren'] != $row['fuzheren']) return false;
 			$GLOBALS['kehuname'] = $row['name'];
 			$GLOBALS['addr_sheng'] = table_kehuadd($row['sheng']);
 			$GLOBALS['addr_shi'] = table_kehuadd($row['city']);
 			$GLOBALS['addr_xian'] = table_kehuadd($row['xian']);
 			$GLOBALS['tuoyunbu'] = $row['tybid'];
+			$GLOBALS['fuzeren'] = $row['fuzheren'];
 			return true;
 		}
 		return false;
@@ -177,16 +194,21 @@ function table_jiaoyistats(){
 
 function table_tuoyunbu(){
 	try {
-		$sql = 'SELECT name FROM tuoyunbu WHERE ID="'.$GLOBALS['tuoyunbu'].'"';
+		if($GLOBALS['tuoyunbu'] == 0 && $GLOBALS['tuoyun'] == "") return true;
+		$sql = 'SELECT name FROM tuoyunbu WHERE ID="'.$GLOBALS['tuoyunbu'].'" AND name LIKE "%'.$GLOBALS['tuoyun'].'%"';
 		$res = $GLOBALS['pdo']->query($sql);
 		if($row = $res->fetch()){
 			$GLOBALS['tuoyunbu'] = $row['name'];
-			$i = 0;
+			/*$i = 0;
 			while($i < strlen($GLOBALS['tuoyunbu'])){
 				if($GLOBALS['tuoyunbu'][$i] == '-') break;
 				$i++;
 			}
-			$GLOBALS['tuoyunbu'] = substr($GLOBALS['tuoyunbu'], 0 , $i);
+			$GLOBALS['tuoyunbu'] = substr($GLOBALS['tuoyunbu'], 0 , $i);*/
+			return true;
+		}else{
+			//echo $row['name'].'+'.$GLOBALS['tuoyunbu'];
+			return false;
 		}
 	} catch (PDOException $e) {
 		$output = 'Error query tuoyunbu: ' . $e->getMessage();
@@ -215,11 +237,14 @@ function show(){
 			'<td>'.$GLOBALS['shoukuanfs'].'</td>'.
 			'<td>'.$GLOBALS['tuoyunhao'].'</td>'.
 			'<td>'.$GLOBALS['tuoyunbu'].'</td>'.
+			'<td>'.$GLOBALS['fhr'].'</td>'.
 			'<td>'.$GLOBALS['addr_sheng'].'</td>'.
 			'<td>'.$GLOBALS['addr_shi'].'</td>'.
 			'<td>'.$GLOBALS['addr_xian'].'</td>'.
 			'<td>'.$GLOBALS['kehuname'].'</td>'.
 			'<td>'.$GLOBALS['fuzeren'].'</td>'.
+			'<td>'.$GLOBALS['kaidanren'].'</td>'.
+			'<td>'.$GLOBALS['shoukuanri'].'</td>'.
 			'</tr>';
 	if($GLOBALS['shoukuanqk'] == '已结算') $GLOBALS['Finish'] += $GLOBALS['sum'];
 	else $GLOBALS['Unfinish'] += $GLOBALS['sum'];
@@ -228,15 +253,24 @@ function show(){
 
 function table_ddmessage(){
 	try {
-		$sql = 'SELECT piaohao,tuoyunhao,kehuid,xiadangtime,shoukuanfs,stats,chaozuoren,productsid FROM ddmessage WHERE stats <> 6 and xiadangtime BETWEEN "'.$GLOBALS['start'].'" and "'.$GLOBALS['end'].'" ORDER BY xiadangtime';
+		$sql = 'SELECT piaohao,tuoyunhao,kehuid,xiadangtime,shoukuanfs,stats,chaozuoren,productsid,shoukuanri,fhr FROM ddmessage WHERE stats <> 6 and xiadangtime BETWEEN "'.$GLOBALS['start'].'" and "'.$GLOBALS['end'].'"';
+		$sql .= ' AND tuoyunhao LIKE "%'.$GLOBALS['tuoyunhao'].'%" AND piaohao LIKE "%'.$GLOBALS['danhao'].'%" AND shoukuanfs LIKE "%'.$GLOBALS['shoukuanfs'].'%"';
+		if($GLOBALS['status'] != 'all') $sql .= ' AND stats='.$GLOBALS['status'].'';
+		if($GLOBALS['kaidanren'] != 'all') $sql .= ' AND chaozuoren="'.$GLOBALS['kaidanren'].'"';
+		if($GLOBALS['fahuoren'] != 'all') $sql .= 'AND fhr = "'.$GLOBALS['fahuoren'].'"';
+		$sql .= ' ORDER BY xiadangtime';
 		$result = $GLOBALS['pdo']->query($sql);
 		//echo $sql;
 		$ary=array('1','2','3','4','5','6','7','8','9','0');
 		while($row = $result->fetch()){
-			if($GLOBALS['status'] != 'all' && $GLOBALS['status'] != $row['stats']) continue;
 			$GLOBALS['shoukuanqk'] = $row['stats'];
+			$GLOBALS['shoukuanri'] = $row['shoukuanri'];
+			$GLOBALS['danhao'] = $row['piaohao'];
+			$GLOBALS['time'] = $row['xiadangtime'];
+			$GLOBALS['shoukuanfs'] = $row['shoukuanfs'];
+			$GLOBALS['fhr'] = $row['fhr'];
+			$GLOBALS['kaidanren'] = $row['chaozuoren'];
 			$products = $row['productsid'];
-			//echo $products.'##';
 			$temp = '';
 			unset($nums);
 			for($i=0; $i<strlen($products); $i++){
@@ -261,7 +295,6 @@ function table_ddmessage(){
 					$index++;
 				}
 				if($flag){
-					//echo $nums[2].$row['piaohao'];
 					if($i+1 < count($nums))$GLOBALS['num'] = $nums[++$i];
 					if($i+1 < count($nums))$GLOBALS['price'] = $nums[++$i];
 					if($i+1 < count($nums))$GLOBALS['sum'] = $nums[++$i];
@@ -274,20 +307,15 @@ function table_ddmessage(){
 					$GLOBALS['name'] = $GLOBALS['nameList'][$index];
 					$GLOBALS['caizhi'] = $GLOBALS['caizhiList'][$index];
 					if(table_kehulist()){
-						$GLOBALS['danhao'] = $row['piaohao'];
-						$GLOBALS['time'] = $row['xiadangtime'];
-						$GLOBALS['shoukuanfs'] = $row['shoukuanfs'];
-						$GLOBALS['shoukuanqk'] = $row['stats'];
-						$GLOBALS['fuzeren'] = $row['chaozuoren'];
 						$GLOBALS['tuoyunhao'] = $row['tuoyunhao'];
-						table_caizhi();
-						table_productclass();
-						table_yanse();
-						table_jiaoyistats();
-						table_tuoyunbu();
-						show();
+						if(table_tuoyunbu()){
+							table_caizhi();
+							table_productclass();
+							table_yanse();
+							table_jiaoyistats();
+							show();
+						}
 					}
-					//break;
 				}else $i += 3;
 				$i++;
 			}
@@ -301,13 +329,12 @@ function table_ddmessage(){
 
 function table_products(){
 	try {
-		$sql = 'SELECT ID,name,caizhi,idname,classid,yanshe FROM products WHERE idname LIKE "%'.$GLOBALS['xinghao'].'%"';
+		$sql = 'SELECT ID,name,caizhi,idname,classid,yanshe FROM products WHERE idname LIKE "%'.$GLOBALS['xinghao'].'%" AND name LIKE "%'.$GLOBALS['proname'].'%"';
+		if($GLOBALS['class'] != 'all') $sql .= ' AND classid = '.$GLOBALS['class'].'';
+		if($GLOBALS['yanse'] != 'all') $sql .= ' AND yanshe = '.$GLOBALS['yanse'].'';
 		$result = $GLOBALS['pdo']->query($sql);
 		$flag = false;
 		while($row = $result->fetch()){
-			//if($GLOBALS['xinghao'] != 'all' && $row['idname'] != $GLOBALS['xinghao']) continue;
-			if($GLOBALS['class'] != 'all' && $row['classid'] != $GLOBALS['class']) continue;
-			if($GLOBALS['yanse'] != 'all' && $row['yanshe'] != $GLOBALS['yanse']) continue;
 			$GLOBALS['styleList'][] = $row['idname'];
 			$GLOBALS['leixingList'][] = $row['classid'];
 			$GLOBALS['colorList'][] = $row['yanshe'];
@@ -333,8 +360,10 @@ function table_products(){
 table_products();
 echo '<h4 align="center">【已结算：' . $Finish . '元】【 未结算：' . $Unfinish . '元】【总交易额：' . ($Finish+$Unfinish) . '元】【总交易量：' . $Final_num .'个】</h4>';
 echo $Output . '</tbody></table>';
+session_start();
+$_SESSION['table'] = $Output;
 if($empty){
-	echo '没有任何关于此类产品信息';
+	echo '暂无信息';
 }
 
 ?>
