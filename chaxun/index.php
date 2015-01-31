@@ -50,7 +50,7 @@ try {
 }
 //获取开单人
 try {
-	$sql = 'SELECT distinct chaozuoren FROM ddmessage';
+	$sql = 'SELECT distinct chaozuoren FROM ddmessage ORDER BY chaozuoren';
 	$result = $pdo->query($sql);
 	while($row = $result->fetch()){
 		$kaidanren[] = '<option value="' . $row['chaozuoren'] . '">' . $row['chaozuoren'] . '</option>';
@@ -89,7 +89,7 @@ try {
 
 //获取品牌
 try {
-	$sql = 'SELECT pingpai FROM  kehulist WHERE pingpai <>  ""';
+	$sql = 'SELECT pingpai FROM  kehulist WHERE pingpai <>  "" ORDER BY pingpai';
 	$result = $pdo->query($sql);
 	while($row = $result->fetch()){
 		$pinpai[] = '<option value="' . $row['pingpai'] . '">' . $row['pingpai'] . '</option>';

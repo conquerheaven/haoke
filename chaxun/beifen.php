@@ -14,7 +14,6 @@ function microtime_float()
 }
 $starttime = microtime_float();
 
-
 $start = $_GET['start'];
 $end = $_GET['end'];
 $class = $_GET['class'];
@@ -34,12 +33,6 @@ $kehu = $_GET['kehu'];
 $fahuoren = $_GET['fahuoren'];
 $tuoyun = $_GET['tuoyunbu'];
 
-unset($idList);
-unset($colorList);
-unset($leixingList);
-unset($styleList);
-unset($nameList);
-unset($caizhiList);
 
 $name = '无';
 $caizhi;
@@ -64,6 +57,7 @@ $leixing;
 $style;
 $shoukuanri;
 $fhr;
+$idList = '';
 
 $Finish = 0;
 $Unfinish = 0;
@@ -207,19 +201,31 @@ function table_tuoyunbu(){
 		$res = $GLOBALS['pdo']->query($sql);
 		if($row = $res->fetch()){
 			$GLOBALS['tuoyunbu'] = $row['name'];
-			/*$i = 0;
-			while($i < strlen($GLOBALS['tuoyunbu'])){
-				if($GLOBALS['tuoyunbu'][$i] == '-') break;
-				$i++;
-			}
-			$GLOBALS['tuoyunbu'] = substr($GLOBALS['tuoyunbu'], 0 , $i);*/
 			return true;
 		}else{
-			//echo $row['name'].'+'.$GLOBALS['tuoyunbu'];
 			return false;
 		}
 	} catch (PDOException $e) {
 		$output = 'Error query tuoyunbu: ' . $e->getMessage();
+		include 'ConnectError.php';
+		exit();
+	}
+}
+
+function table_products($id){
+	try {
+		$sql = 'SELECT ID,name,caizhi,idname,classid,yanshe FROM products WHERE ID='.$id.'';
+		$result = $GLOBALS['pdo']->query($sql);
+		if($row = $result->fetch()){
+			$GLOBALS['style'] = $row['idname'];
+			$GLOBALS['leixing'] = $row['classid'];
+			$GLOBALS['color'] = $row['yanshe'];
+			$GLOBALS['id'] = $row['ID'];
+			$GLOBALS['name'] = $row['name'];
+			$GLOBALS['caizhi'] = $row['caizhi'];
+		}
+	} catch (PDOException $e) {
+		$output = 'Error query products: ' . $e->getMessage();
 		include 'ConnectError.php';
 		exit();
 	}
@@ -271,7 +277,12 @@ function table_ddmessage(){
 		//echo $sql;
 		$ary=array('1','2','3','4','5','6','7','8','9','0');
 		while($row = $result->fetch()){
+			$GLOBALS['kehuid'] = $row['kehuid'];
+			if(!table_kehulist()) continue;
+			$GLOBALS['tuoyunhao'] = $row['tuoyunhao'];
+			if(!table_tuoyunbu()) continue;
 			$GLOBALS['shoukuanqk'] = $row['stats'];
+			table_jiaoyistats();
 			$GLOBALS['shoukuanri'] = $row['shoukuanri'];
 			$GLOBALS['danhao'] = $row['piaohao'];
 			$GLOBALS['time'] = $row['xiadangtime'];
@@ -293,37 +304,15 @@ function table_ddmessage(){
 			if($temp != '') $nums[] = $temp;
 			$i = 0;
 			while($i < count($nums)){
-				$index=0;
-				$flag=false;
-				while($index < count($GLOBALS['idList'])){
-					if($nums[$i]==$GLOBALS['idList'][$index]){
-						$flag = true;
-						break;
-					}
-					$index++;
-				}
-				if($flag){
+				if(preg_match('/\['.$nums[$i].'\]/', $GLOBALS['idList'])){
+					table_products($nums[$i]);
 					if($i+1 < count($nums))$GLOBALS['num'] = $nums[++$i];
 					if($i+1 < count($nums))$GLOBALS['price'] = $nums[++$i];
 					if($i+1 < count($nums))$GLOBALS['sum'] = $nums[++$i];
-					$GLOBALS['kehuid'] = $row['kehuid'];
-					
-					$GLOBALS['style'] = $GLOBALS['styleList'][$index];
-					$GLOBALS['leixing'] = $GLOBALS['leixingList'][$index];
-					$GLOBALS['color'] = $GLOBALS['colorList'][$index];
-					$GLOBALS['id'] = $GLOBALS['idList'][$index];
-					$GLOBALS['name'] = $GLOBALS['nameList'][$index];
-					$GLOBALS['caizhi'] = $GLOBALS['caizhiList'][$index];
-					if(table_kehulist()){
-						$GLOBALS['tuoyunhao'] = $row['tuoyunhao'];
-						if(table_tuoyunbu()){
-							table_caizhi();
-							table_productclass();
-							table_yanse();
-							table_jiaoyistats();
-							show();
-						}
-					}
+					table_caizhi();
+					table_productclass();
+					table_yanse();
+					show();
 				}else $i += 3;
 				$i++;
 			}
@@ -335,7 +324,7 @@ function table_ddmessage(){
 	}
 }
 
-function table_products(){
+function Main(){
 	try {
 		$sql = 'SELECT ID,name,caizhi,idname,classid,yanshe FROM products WHERE idname LIKE "%'.$GLOBALS['xinghao'].'%" AND name LIKE "%'.$GLOBALS['proname'].'%"';
 		if($GLOBALS['class'] != 'all') $sql .= ' AND classid = '.$GLOBALS['class'].'';
@@ -343,16 +332,10 @@ function table_products(){
 		$result = $GLOBALS['pdo']->query($sql);
 		$flag = false;
 		while($row = $result->fetch()){
-			$GLOBALS['styleList'][] = $row['idname'];
-			$GLOBALS['leixingList'][] = $row['classid'];
-			$GLOBALS['colorList'][] = $row['yanshe'];
-			$GLOBALS['idList'][] = $row['ID'];
-			$GLOBALS['nameList'][] = $row['name'];
-			$GLOBALS['caizhiList'][] = $row['caizhi'];
+			$GLOBALS['idList'] .= '['.$row['ID'].']';
 			$flag = true;
 		}
 		if(!$flag){
-			//echo '<script type="text/javascript">alert("没有此类产品");</script>';
 			$output = '没有此类产品';
 			include 'ConnectError.php';
 			exit();
@@ -365,9 +348,9 @@ function table_products(){
 	}
 }
 
-table_products();
+Main();
 $runtime = number_format((microtime_float()-$starttime) , 4).'s';
-echo '<h4 align="center">【已结算：' . $Finish . '元】【 未结算：' . $Unfinish . '元】【总交易额：' . ($Finish+$Unfinish) . '元】【总交易量：' . $Final_num .'个】['.$runtime.']M</h4>';
+echo '<h4 align="center">【已结算：' . $Finish . '元】【 未结算：' . $Unfinish . '元】【总交易额：' . ($Finish+$Unfinish) . '元】【总交易量：' . $Final_num .'个】['.$runtime.']K</h4>';
 echo $Output . '</tbody></table>';
 session_start();
 $_SESSION['table'] = $Output;

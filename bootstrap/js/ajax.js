@@ -55,3 +55,10 @@
 	function download(){
 		window.location.href='download.php';
 	}
+	function beifen(){
+		getMessage();
+		CreateXMLHttpRequest();
+		xmlobj.onreadystatechange = StarHandler;
+		xmlobj.open("GET","beifen.php?"+message,true);
+		xmlobj.send(null);
+	}

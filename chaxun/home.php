@@ -168,8 +168,9 @@
 			<input id="danhao" name="danhao" type="text" style="width: 100px" placeholder="单号（全部）">
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<input id="shoukuanfs" name="shoukuanfs" type="text" style="width: 100px" placeholder="收款方式（全部）">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="Req();" value="查询" />
+			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="beifen();" value="查询" />
 			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-success" type="button" onClick="download();" value="下载" />
+			<!-- &nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="beifen();" value="beicha" /> -->
 				</form>
 				</div>
 				<div class="container-fluid well" id = "webpage" data-spy="scroll" data-target="#navbar-example" data-offset="0" style="width:110%;height:55%;overflow:auto; position: relative;" class="table-bordered table-condensed">
