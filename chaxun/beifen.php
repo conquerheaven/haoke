@@ -264,11 +264,11 @@ function show(){
 	else $GLOBALS['Unfinish'] += $GLOBALS['sum'];
 	$GLOBALS['Final_num'] += $GLOBALS['num'];
 }
-
 function table_ddmessage(){
 	try {
 		$sql = 'SELECT piaohao,tuoyunhao,kehuid,xiadangtime,shoukuanfs,stats,chaozuoren,productsid,shoukuanri,fhr FROM ddmessage WHERE stats <> 6 and xiadangtime BETWEEN "'.$GLOBALS['start'].'" and "'.$GLOBALS['end'].'"';
-		$sql .= ' AND tuoyunhao LIKE "%'.$GLOBALS['tuoyunhao'].'%" AND piaohao LIKE "%'.$GLOBALS['danhao'].'%" AND shoukuanfs LIKE "%'.$GLOBALS['shoukuanfs'].'%"';
+		$sql .= ' AND tuoyunhao LIKE "%'.$GLOBALS['tuoyunhao'].'%" AND piaohao LIKE "%'.$GLOBALS['danhao'].'%"';
+		if($GLOBALS['shoukuanfs'] != 'all') $sql .= ' AND shoukuanfs LIKE "%'.$GLOBALS['shoukuanfs'].'%"';
 		if($GLOBALS['status'] != 'all') $sql .= ' AND stats='.$GLOBALS['status'].'';
 		if($GLOBALS['kaidanren'] != 'all') $sql .= ' AND chaozuoren="'.$GLOBALS['kaidanren'].'"';
 		if($GLOBALS['fahuoren'] != 'all') $sql .= 'AND fhr = "'.$GLOBALS['fahuoren'].'"';

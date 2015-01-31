@@ -76,8 +76,8 @@
     </script>
 </head>
 <body>
-	<h3 align="center">产品销售查询</h3>
-        <div class="container well">
+	<h4 align="center">产品销售查询</h4>
+        <div class="container well" style="width: 95%">
             <form action="" method="get" style="font-size: 12px;">
           
             【日期/地区】选择日期：  <input id="reportrange" name="riqi" style="width:200px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" value="2014-01-01 - 2014-01-01">
@@ -96,7 +96,7 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;区/县：<select id="xian" name="xian" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
 			<option value="all">全部</option>
 			</select>
-			<br><br>
+			<br>
 		【客户信息】品牌：
 			<select id="pinpai" name="pinpai" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
 			<option value="all">全部</option>
@@ -111,13 +111,24 @@
 			echo $u;
 			endforeach;?>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input id="jiajucheng" name="jiajucheng" type="text" style="width: 100px" placeholder="家具城名称（全部）">
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;家具城：
+			<select id="jiajucheng" name="jiajucheng" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
+			<option value="">全部</option>
+			<?php foreach ($jiajucheng as $u ):
+			echo $u;
+			endforeach;?>
+			</select>
+			&nbsp;&nbsp;&nbsp;&nbsp;托运部：
+			<select id="tuoyunbu" name="tuoyunbu" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
+			<option value="">全部</option>
+			<?php foreach ($tuoyunbu as $u ):
+			echo $u;
+			endforeach;?>
+			</select>
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<input id="kehu" name="kehu" type="text" style="width: 100px" placeholder="客户名称（全部）">
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input id="tuoyunbu" name="tuoyunbu" type="text" style="width: 85px" placeholder="托运部（全部）">
-              <br><br>
+              <br>
               【产品信息】产品分类选择：
 			<select id="class" name="class" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
 			<option value="all">全部</option>
@@ -138,7 +149,7 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<input id="proname" name="proname" type="text" style="width: 100px" placeholder="产品名称（全部）">
 			
-				<br><br>
+				<br>
 		【订单信息】订单状态：
 			<select id="status" name="status" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
 			<option value="all">全部</option>
@@ -162,18 +173,29 @@
 			endforeach;?>
 			</select>
 			
+			&nbsp;&nbsp;&nbsp;&nbsp;收款方式：
+			<select id="shoukuanfs" name="shoukuanfs" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
+			<option value="">全部</option>
+			<option value="补">补</option>
+			<option value="店">店</option>
+			<option value="托单">托单</option>
+			<option value="打款">打款</option>
+			<option value="签单">签单</option>
+			<option value="代收">代收</option>
+			<option value="现金">现金</option>
+			<option value="客户打款">客户打款</option>
+			</select>
+			
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<input id="tuoyunhao" name="tuoyunhao" type="text" style="width: 100px" placeholder="托运单号（全部）">
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<input id="danhao" name="danhao" type="text" style="width: 100px" placeholder="单号（全部）">
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input id="shoukuanfs" name="shoukuanfs" type="text" style="width: 100px" placeholder="收款方式（全部）">
 			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="beifen();" value="查询" />
 			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-success" type="button" onClick="download();" value="下载" />
 			<!-- &nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="beifen();" value="beicha" /> -->
 				</form>
 				</div>
-				<div class="container-fluid well" id = "webpage" data-spy="scroll" data-target="#navbar-example" data-offset="0" style="width:110%;height:55%;overflow:auto; position: relative;" class="table-bordered table-condensed">
+				<div class="container-fluid well" id = "webpage" data-spy="scroll" data-target="#navbar-example" data-offset="0" style="width:110%;height:75%;overflow:auto; position: relative;" class="table-bordered table-condensed">
 				
         </div>
 

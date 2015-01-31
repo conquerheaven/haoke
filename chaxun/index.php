@@ -89,13 +89,52 @@ try {
 
 //获取品牌
 try {
-	$sql = 'SELECT pingpai FROM  kehulist WHERE pingpai <>  "" ORDER BY pingpai';
+	$sql = 'SELECT distinct pingpai FROM  kehulist WHERE pingpai <>  "" ORDER BY pingpai';
 	$result = $pdo->query($sql);
 	while($row = $result->fetch()){
-		$pinpai[] = '<option value="' . $row['pingpai'] . '">' . $row['pingpai'] . '</option>';
+		$pinpai[] = '<option value="'. $row['pingpai'] .'">' . $row['pingpai'] . '</option>';
 	}
 } catch (PDOException $e) {
 	$output = 'Error fetching pinpai: ' . $e->getMessage();
+	include 'ConnectError.php';
+	exit();
+}
+
+//获取家具城
+try {
+	$sql = 'SELECT distinct scname FROM  kehulist WHERE scname <>  "" ORDER BY scname';
+	$result = $pdo->query($sql);
+	while($row = $result->fetch()){
+		$jiajucheng[] = '<option value="'. $row['scname'] .'">' . $row['scname'] . '</option>';
+	}
+} catch (PDOException $e) {
+	$output = 'Error fetching jiajucheng: ' . $e->getMessage();
+	include 'ConnectError.php';
+	exit();
+}
+
+//获取托运部
+try {
+	$sql = 'SELECT distinct name FROM tuoyunbu WHERE name <>  "" ORDER BY name';
+	$result = $pdo->query($sql);
+	while($row = $result->fetch()){
+		$tuoyunbu[] = '<option value="'. $row['name'] .'">' . $row['name'] . '</option>';
+	}
+} catch (PDOException $e) {
+	$output = 'Error fetching tuoyunbu: ' . $e->getMessage();
+	include 'ConnectError.php';
+	exit();
+}
+
+//获取收款方式
+try {
+	$sql = 'SELECT distinct shoukuanfs FROM ddmessage WHERE shoukuanfs <>  "" ORDER BY shoukuanfs';
+	$result = $pdo->query($sql);
+	while($row = $result->fetch()){
+		$shoukuanfs[] = '<option value="'. $row['shoukuanfs'] .'">' . $row['shoukuanfs'] . '</option>';
+	}
+} catch (PDOException $e) {
+	$output = 'Error fetching shoukuanfs: ' . $e->getMessage();
 	include 'ConnectError.php';
 	exit();
 }
