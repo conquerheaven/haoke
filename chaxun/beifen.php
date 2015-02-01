@@ -1,19 +1,11 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=GBK">
-</head>
-<body>
 <?php
 include "ConnectDatabase.php";
-
 function microtime_float()
 {
 	list($usec, $sec) = explode(" ", microtime());
 	return ((float)$usec + (float)$sec);
 }
 $starttime = microtime_float();
-
 $start = $_GET['start'];
 $end = $_GET['end'];
 $class = $_GET['class'];
@@ -32,9 +24,7 @@ $jiajucheng = $_GET['jiajucheng'];
 $kehu = $_GET['kehu'];
 $fahuoren = $_GET['fahuoren'];
 $tuoyun = $_GET['tuoyunbu'];
-
-
-$name = 'ÎŞ';
+$name = 'æ— ';
 $caizhi;
 $id;
 $sum;
@@ -58,42 +48,38 @@ $style;
 $shoukuanri;
 $fhr;
 $idList = '';
-
 $Finish = 0;
 $Unfinish = 0;
 $Final_num = 0;
-
 $Output = '<table class="table table-bordered table-condensed table-striped table-hover" style="font-size:5px">
 		<thead>
 		<tr>
-			<th  style="text-align:center">µ¥ºÅ</th>
-			<th  style="text-align:center">ÏÂµ¥Ê±¼ä</th>
-			<th  style="text-align:center">´óÀà</th>
-			<th  style="text-align:center">²úÆ·Ãû³Æ</th>
-			<th  style="text-align:center">²úÆ·ĞÍºÅ</th>
-			<th  style="text-align:center">²ÄÖÊ</th>
-			<th  style="text-align:center">ÑÕÉ«</th>
-			<th  style="text-align:center">ÊıÁ¿</th>
-			<th  style="text-align:center">µ¥¼Û</th>
-			<th  style="text-align:center">Ğ¡¼Æ</th>
-			<th  style="text-align:center">¶©µ¥×´Ì¬</th>
-			<th  style="text-align:center">ÊÕ¿î·½Ê½</th>
-			<th  style="text-align:center">ÍĞÔËºÅ</th>
-			<th  style="text-align:center">ÍĞÔË²¿</th>
-			<th  style="text-align:center">·¢»õÈË</th>
-			<th  style="text-align:center">Ê¡</th>
-			<th  style="text-align:center">ÊĞ</th>
-			<th  style="text-align:center">ÏØ/Çø</th>
-			<th  style="text-align:center">¿Í»§Ãû³Æ</th>
-			<th  style="text-align:center">¿Í»§¸ºÔğÈË</th>
-			<th  style="text-align:center">¿ªµ¥ÈË</th>
-			<th  style="text-align:center">ÊÕ¿îÈÕÆÚ</th>
+			<th  style="text-align:center">å•å·</th>
+			<th  style="text-align:center">ä¸‹å•æ—¶é—´</th>
+			<th  style="text-align:center">å¤§ç±»</th>
+			<th  style="text-align:center">äº§å“åç§°</th>
+			<th  style="text-align:center">äº§å“å‹å·</th>
+			<th  style="text-align:center">æè´¨</th>
+			<th  style="text-align:center">é¢œè‰²</th>
+			<th  style="text-align:center">æ•°é‡</th>
+			<th  style="text-align:center">å•ä»·</th>
+			<th  style="text-align:center">å°è®¡</th>
+			<th  style="text-align:center">è®¢å•çŠ¶æ€</th>
+			<th  style="text-align:center">æ”¶æ¬¾æ–¹å¼</th>
+			<th  style="text-align:center">æ‰˜è¿å·</th>
+			<th  style="text-align:center">æ‰˜è¿éƒ¨</th>
+			<th  style="text-align:center">å‘è´§äºº</th>
+			<th  style="text-align:center">çœ</th>
+			<th  style="text-align:center">å¸‚</th>
+			<th  style="text-align:center">å¿/åŒº</th>
+			<th  style="text-align:center">å®¢æˆ·åç§°</th>
+			<th  style="text-align:center">å®¢æˆ·è´Ÿè´£äºº</th>
+			<th  style="text-align:center">å¼€å•äºº</th>
+			<th  style="text-align:center">æ”¶æ¬¾æ—¥æœŸ</th>
 		</tr>
 	</thead>
 	<tbody style="text-align:center">';
-
 $empty = true;
-
 function table_productclass(){
 	try {
 		$sql = 'SELECT classname FROM productclass WHERE ID="'.$GLOBALS['leixing'].'"';
@@ -107,7 +93,6 @@ function table_productclass(){
 		exit();
 	}
 }
-
 function table_yanse(){
 	try {
 		$sql = 'SELECT name FROM yanse WHERE ID="'.$GLOBALS['color'].'"';
@@ -121,7 +106,6 @@ function table_yanse(){
 		exit();
 	}
 }
-
 function table_caizhi(){
 	try {
 		$sql = 'SELECT name FROM caizhi WHERE ID="'.$GLOBALS['caizhi'].'"';
@@ -135,7 +119,6 @@ function table_caizhi(){
 		exit();
 	}
 }
-
 function table_kehuadd($ID){
 	try {
 		$sql = 'SELECT sheng FROM kehuadd WHERE ID="'.$ID.'"';
@@ -150,7 +133,6 @@ function table_kehuadd($ID){
 		exit();
 	}
 }
-
 function table_kehulist(){
 	try {
 		$sql = 'SELECT name,dqid,sheng,city,xian,tybid,pingpai,fuzheren FROM kehulist WHERE ID="'.$GLOBALS['kehuid'].'" AND name LIKE "%'.$GLOBALS['kehu'].'%" AND scname LIKE "%'.$GLOBALS['jiajucheng'].'%"';
@@ -179,7 +161,6 @@ function table_kehulist(){
 		exit();
 	}
 }
-
 function table_jiaoyistats(){
 	try {
 		$sql = 'SELECT name FROM jiaoyistats WHERE ID="'.$GLOBALS['shoukuanqk'].'"';
@@ -193,7 +174,6 @@ function table_jiaoyistats(){
 		exit();
 	}
 }
-
 function table_tuoyunbu(){
 	try {
 		if($GLOBALS['tuoyunbu'] == 0 && $GLOBALS['tuoyun'] == "") return true;
@@ -211,7 +191,6 @@ function table_tuoyunbu(){
 		exit();
 	}
 }
-
 function table_products($id){
 	try {
 		$sql = 'SELECT ID,name,caizhi,idname,classid,yanshe FROM products WHERE ID='.$id.'';
@@ -230,12 +209,11 @@ function table_products($id){
 		exit();
 	}
 }
-
 function show(){
 	$GLOBALS['empty'] = false;
-	if($GLOBALS['shoukuanqk']=='0') $GLOBALS['shoukuanqk'] = 'ÏÂµ¥Î´·¢»õ';
-	if($GLOBALS['shoukuanqk']=='ÒÑ½áËã') $GLOBALS['Output'] .= '<tr class="success">';
-	else if($GLOBALS['shoukuanqk']=='ÏÂµ¥Î´·¢»õ') $GLOBALS['Output'] .= '<tr class="info">';
+	if($GLOBALS['shoukuanqk']=='0') $GLOBALS['shoukuanqk'] = 'ä¸‹å•æœªå‘è´§';
+	if($GLOBALS['shoukuanqk']=='å·²ç»“ç®—') $GLOBALS['Output'] .= '<tr class="success">';
+	else if($GLOBALS['shoukuanqk']=='ä¸‹å•æœªå‘è´§') $GLOBALS['Output'] .= '<tr class="info">';
 	else $GLOBALS['Output'] .= '<tr class="danger">';
 	$GLOBALS['Output'] .= '<td>'.$GLOBALS['danhao'].'</td>'.
 			'<td>'.$GLOBALS['time'].'</td>'.
@@ -260,7 +238,7 @@ function show(){
 			'<td>'.$GLOBALS['kaidanren'].'</td>'.
 			'<td>'.$GLOBALS['shoukuanri'].'</td>'.
 			'</tr>';
-	if($GLOBALS['shoukuanqk'] == 'ÒÑ½áËã') $GLOBALS['Finish'] += $GLOBALS['sum'];
+	if($GLOBALS['shoukuanqk'] == 'å·²ç»“ç®—') $GLOBALS['Finish'] += $GLOBALS['sum'];
 	else $GLOBALS['Unfinish'] += $GLOBALS['sum'];
 	$GLOBALS['Final_num'] += $GLOBALS['num'];
 }
@@ -323,7 +301,6 @@ function table_ddmessage(){
 		exit();
 	}
 }
-
 function Main(){
 	try {
 		$sql = 'SELECT ID,name,caizhi,idname,classid,yanshe FROM products WHERE idname LIKE "%'.$GLOBALS['xinghao'].'%" AND name LIKE "%'.$GLOBALS['proname'].'%"';
@@ -336,7 +313,7 @@ function Main(){
 			$flag = true;
 		}
 		if(!$flag){
-			$output = 'Ã»ÓĞ´ËÀà²úÆ·';
+			$output = 'æ²¡æœ‰æ­¤ç±»äº§å“';
 			include 'ConnectError.php';
 			exit();
 		}
@@ -347,17 +324,12 @@ function Main(){
 		exit();
 	}
 }
-
 Main();
-$runtime = number_format((microtime_float()-$starttime) , 4).'s';
-echo '<h4 align="center">¡¾ÒÑ½áËã£º' . $Finish . 'Ôª¡¿¡¾ Î´½áËã£º' . $Unfinish . 'Ôª¡¿¡¾×Ü½»Ò×¶î£º' . ($Finish+$Unfinish) . 'Ôª¡¿¡¾×Ü½»Ò×Á¿£º' . $Final_num .'¸ö¡¿['.$runtime.']K</h4>';
-echo $Output . '</tbody></table>';
 session_start();
-$_SESSION['table'] = $Output;
+$_SESSION['table'] = $Output . '</tbody></table>';
+$runtime = number_format((microtime_float()-$starttime) , 4).'s';
+echo '<h4 align="center">ã€å·²ç»“ç®—ï¼š' . $Finish . 'å…ƒã€‘ã€ æœªç»“ç®—ï¼š' . $Unfinish . 'å…ƒã€‘ã€æ€»äº¤æ˜“é¢ï¼š' . ($Finish+$Unfinish) . 'å…ƒã€‘ã€æ€»äº¤æ˜“é‡ï¼š' . $Final_num .'ä¸ªã€‘['.$runtime.']K</h4>';
+echo $Output . '</tbody></table>';
 if($empty){
-	echo 'ÔİÎŞĞÅÏ¢';
+	echo 'æš‚æ— ä¿¡æ¯';
 }
-
-?>
-</body>
-</html>

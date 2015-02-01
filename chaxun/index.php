@@ -1,6 +1,6 @@
 <?php
 include 'ConnectDatabase.php';
-//»ñÈ¡µØÇø
+//è·å–åœ°åŒº
 try {
 	$sql= 'SELECT * FROM kehuadd where preid = 0';
 	$result = $pdo->query($sql);
@@ -12,7 +12,7 @@ try {
 	include 'ConnectError.php';
 	exit();
 }
-//»ñÈ¡ÑÕÉ«
+//è·å–é¢œè‰²
 try {
 	$sql= 'SELECT * FROM yanse';
 	$result = $pdo->query($sql);
@@ -24,7 +24,7 @@ try {
 	include 'ConnectError.php';
 	exit();
 }
-//»ñÈ¡²úÆ·´óÀà
+//è·å–äº§å“å¤§ç±»
 try {
 	$sql= 'SELECT * FROM productclass where classname is not null and classname <> ""';
 	$result = $pdo->query($sql);
@@ -36,7 +36,7 @@ try {
 	include 'ConnectError.php';
 	exit();
 }
-//»ñµÃ²úÆ·ĞÍºÅ
+//è·å–äº§å“å‹å·
 try {
 	$sql= 'SELECT distinct idname FROM products where idname is not null and idname <> "" ORDER BY idname';
 	$result = $pdo->query($sql);
@@ -48,7 +48,7 @@ try {
 	include 'ConnectError.php';
 	exit();
 }
-//»ñÈ¡¿ªµ¥ÈË
+//è·å–å¼€å•äºº
 try {
 	$sql = 'SELECT distinct chaozuoren FROM ddmessage ORDER BY chaozuoren';
 	$result = $pdo->query($sql);
@@ -61,7 +61,7 @@ try {
 	exit();
 }
 
-//»ñÈ¡¿Í»§¸ºÔğÈË
+//è·å–å®¢æˆ·è´Ÿè´£äºº
 try {
 	$sql = 'SELECT distinct fuzheren FROM kehulist';
 	$result = $pdo->query($sql);
@@ -74,7 +74,7 @@ try {
 	exit();
 }
 
-//»ñÈ¡ËÍ»õÈË
+//è·å–é€è´§äºº
 try {
 	$sql = 'SELECT distinct fhr FROM ddmessage';
 	$result = $pdo->query($sql);
@@ -87,7 +87,7 @@ try {
 	exit();
 }
 
-//»ñÈ¡Æ·ÅÆ
+//è·å–å“ç‰Œ
 try {
 	$sql = 'SELECT distinct pingpai FROM  kehulist WHERE pingpai <>  "" ORDER BY pingpai';
 	$result = $pdo->query($sql);
@@ -100,7 +100,7 @@ try {
 	exit();
 }
 
-//»ñÈ¡¼Ò¾ß³Ç
+//è·å–å®¶å…·åŸ
 try {
 	$sql = 'SELECT distinct scname FROM  kehulist WHERE scname <>  "" ORDER BY scname';
 	$result = $pdo->query($sql);
@@ -113,7 +113,7 @@ try {
 	exit();
 }
 
-//»ñÈ¡ÍĞÔË²¿
+//è·å–æ‰˜è¿éƒ¨
 try {
 	$sql = 'SELECT distinct name FROM tuoyunbu WHERE name <>  "" ORDER BY name';
 	$result = $pdo->query($sql);
@@ -126,7 +126,7 @@ try {
 	exit();
 }
 
-//»ñÈ¡ÊÕ¿î·½Ê½
+//è·å–æ”¶æ¬¾æ–¹å¼
 try {
 	$sql = 'SELECT distinct shoukuanfs FROM ddmessage WHERE shoukuanfs <>  "" ORDER BY shoukuanfs';
 	$result = $pdo->query($sql);

@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=GBK">
-<title>²úÆ·ÏúÊÛ²éÑ¯</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>äº§å“é”€å”®æŸ¥è¯¢</title>
 	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="../bootstrap/css/bootstrap.css" rel="stylesheet">
 	<link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
@@ -23,7 +23,6 @@
         $('#reportrange span').html(start.format('YYYY-MM-DD') + '-' + end.format('YYYY-MM-DD'));
                     //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
      }
-
      var optionSet1 = {
          startDate: moment().subtract('days', 29),
          endDate: moment(),
@@ -36,12 +35,12 @@
          timePickerIncrement: 1,
          timePicker12Hour: true,
          ranges: {
-             '½ñÌì': [moment(), moment()],
-             '×òÌì': [moment().subtract('days', 1), moment().subtract('days', 1)],
-             '¹ıÈ¥Ò»ÖÜ': [moment().subtract('days', 6), moment()],
-             '¹ıÈ¥Ò»¸öÔÂ': [moment().subtract('days', 29), moment()],
-             'Õâ¸öÔÂ': [moment().startOf('month'), moment().endOf('month')],
-             'ÉÏ¸öÔÂ': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+             'ä»Šå¤©': [moment(), moment()],
+             'æ˜¨å¤©': [moment().subtract('days', 1), moment().subtract('days', 1)],
+             'è¿‡å»ä¸€å‘¨': [moment().subtract('days', 6), moment()],
+             'è¿‡å»ä¸€ä¸ªæœˆ': [moment().subtract('days', 29), moment()],
+             'è¿™ä¸ªæœˆ': [moment().startOf('month'), moment().endOf('month')],
+             'ä¸Šä¸ªæœˆ': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
           },
          opens: 'right',
          buttonClasses: ['btn btn-default'],
@@ -54,17 +53,14 @@
 	         cancelLabel: 'Clear',
 	         fromLabel: 'From',
 	         toLabel: 'To',
-	         customRangeLabel: '×ÔÑ¡ÈÕÆÚ',
-	         daysOfWeek: ['ÈÕ', 'Ò»', '¶ş', 'Èı', 'ËÄ', 'Îå','Áù'],
-	         monthNames: ['Ò»ÔÂ', '¶şÔÂ', 'ÈıÔÂ', 'ËÄÔÂ', 'ÎåÔÂ', 'ÁùÔÂ', 'ÆßÔÂ', '°ËÔÂ', '¾ÅÔÂ', 'Ê®ÔÂ', 'Ê®Ò»ÔÂ', 'Ê®¶şÔÂ'],
+	         customRangeLabel: 'è‡ªé€‰æ—¥æœŸ',
+	         daysOfWeek: ['æ—¥', 'ä¸€', 'äºŒ', 'ä¸‰', 'å››', 'äº”','å…­'],
+	         monthNames: ['ä¸€æœˆ', 'äºŒæœˆ', 'ä¸‰æœˆ', 'å››æœˆ', 'äº”æœˆ', 'å…­æœˆ', 'ä¸ƒæœˆ', 'å…«æœˆ', 'ä¹æœˆ', 'åæœˆ', 'åä¸€æœˆ', 'åäºŒæœˆ'],
 	         firstDay: 1
          }
       };
-
       $('#reportrange span').html(moment().subtract('days', 29).format('YYYY-MM-DD') + '-' + moment().format('YYYY-MM-DD'));
-
       $('#reportrange').daterangepicker(optionSet1, cb);
-
       $('#reportrange').on('show.daterangepicker', function() { console.log("show event fired"); });
       $('#reportrange').on('hide.daterangepicker', function() { console.log("hide event fired"); });
       $('#reportrange').on('apply.daterangepicker', function(ev, picker) { 
@@ -76,122 +72,122 @@
     </script>
 </head>
 <body>
-	<h4 align="center">²úÆ·ÏúÊÛ²éÑ¯</h4>
+	<h4 align="center">äº§å“é”€å”®æŸ¥è¯¢</h4>
         <div class="container well" style="width: 95%">
             <form action="" method="get" style="font-size: 12px;">
           
-            ¡¾ÈÕÆÚ/µØÇø¡¿Ñ¡ÔñÈÕÆÚ£º  <input id="reportrange" name="riqi" style="width:200px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" value="2014-01-01 - 2014-01-01">
-			&nbsp;&nbsp;&nbsp;&nbsp;µØÇø£º<select id="area" name="area" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetProvince()"> 
-			<option value="all">È«²¿</option>
+            ã€æ—¥æœŸ/åœ°åŒºã€‘é€‰æ‹©æ—¥æœŸï¼š  <input id="reportrange" name="riqi" style="width:200px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" value="2014-01-01 - 2014-01-01">
+			&nbsp;&nbsp;&nbsp;&nbsp;åœ°åŒºï¼š<select id="area" name="area" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetProvince()"> 
+			<option value="all">å…¨éƒ¨</option>
 			<?php foreach ($areas as $area ):
 			echo  $area;
 			endforeach;?>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;Ê¡·İ£º<select id="province" name="province" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetCity()"> 
-			<option value="all">È«²¿</option>
+			&nbsp;&nbsp;&nbsp;&nbsp;çœä»½ï¼š<select id="province" name="province" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetCity()"> 
+			<option value="all">å…¨éƒ¨</option>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;³ÇÊĞ£º<select id="city" name="city" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetXian()"> 
-			<option value="all">È«²¿</option>
+			&nbsp;&nbsp;&nbsp;&nbsp;åŸå¸‚ï¼š<select id="city" name="city" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc" onchange="GetXian()"> 
+			<option value="all">å…¨éƒ¨</option>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;Çø/ÏØ£º<select id="xian" name="xian" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="all">È«²¿</option>
+			&nbsp;&nbsp;&nbsp;&nbsp;åŒº/å¿ï¼š<select id="xian" name="xian" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
+			<option value="all">å…¨éƒ¨</option>
 			</select>
 			<br>
-		¡¾¿Í»§ĞÅÏ¢¡¿Æ·ÅÆ£º
+		ã€å®¢æˆ·ä¿¡æ¯ã€‘å“ç‰Œï¼š
 			<select id="pinpai" name="pinpai" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="all">È«²¿</option>
+			<option value="all">å…¨éƒ¨</option>
 			<?php foreach ($pinpai as $p ):
 			echo $p;
 			endforeach;?>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;¿Í»§¸ºÔğÈË£º
+			&nbsp;&nbsp;&nbsp;&nbsp;å®¢æˆ·è´Ÿè´£äººï¼š
 			<select id="fuzeren" name="fuzeren" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="all">È«²¿</option>
+			<option value="all">å…¨éƒ¨</option>
 			<?php foreach ($kehufuzeren as $u ):
 			echo $u;
 			endforeach;?>
 			</select>
 			
-			&nbsp;&nbsp;&nbsp;&nbsp;¼Ò¾ß³Ç£º
+			&nbsp;&nbsp;&nbsp;&nbsp;å®¶å…·åŸï¼š
 			<select id="jiajucheng" name="jiajucheng" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="">È«²¿</option>
+			<option value="">å…¨éƒ¨</option>
 			<?php foreach ($jiajucheng as $u ):
 			echo $u;
 			endforeach;?>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;ÍĞÔË²¿£º
+			&nbsp;&nbsp;&nbsp;&nbsp;æ‰˜è¿éƒ¨ï¼š
 			<select id="tuoyunbu" name="tuoyunbu" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="">È«²¿</option>
+			<option value="">å…¨éƒ¨</option>
 			<?php foreach ($tuoyunbu as $u ):
 			echo $u;
 			endforeach;?>
 			</select>
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input id="kehu" name="kehu" type="text" style="width: 100px" placeholder="¿Í»§Ãû³Æ£¨È«²¿£©">
+			<input id="kehu" name="kehu" type="text" style="width: 100px" placeholder="å®¢æˆ·åç§°ï¼ˆå…¨éƒ¨ï¼‰">
               <br>
-              ¡¾²úÆ·ĞÅÏ¢¡¿²úÆ··ÖÀàÑ¡Ôñ£º
+              ã€äº§å“ä¿¡æ¯ã€‘äº§å“åˆ†ç±»é€‰æ‹©ï¼š
 			<select id="class" name="class" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="all">È«²¿</option>
+			<option value="all">å…¨éƒ¨</option>
 			<?php foreach ($class as $cla ):
 			echo  $cla;
 			endforeach;?>
 			</select> 
 
-				&nbsp;&nbsp;&nbsp;&nbsp;ÑÕÉ«£º
+				&nbsp;&nbsp;&nbsp;&nbsp;é¢œè‰²ï¼š
 			<select id="yanse" name="yanse" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="all">È«²¿</option>
+			<option value="all">å…¨éƒ¨</option>
 			<?php foreach ($yanse as $yan ):
 			echo $yan;
 			endforeach;?>
 			</select> 
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input id="xinghao" name="xinghao" type="text" style="width: 80px" placeholder="ĞÍºÅ£¨È«²¿£©">
+			<input id="xinghao" name="xinghao" type="text" style="width: 80px" placeholder="å‹å·ï¼ˆå…¨éƒ¨ï¼‰">
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input id="proname" name="proname" type="text" style="width: 100px" placeholder="²úÆ·Ãû³Æ£¨È«²¿£©">
+			<input id="proname" name="proname" type="text" style="width: 100px" placeholder="äº§å“åç§°ï¼ˆå…¨éƒ¨ï¼‰">
 			
 				<br>
-		¡¾¶©µ¥ĞÅÏ¢¡¿¶©µ¥×´Ì¬£º
+		ã€è®¢å•ä¿¡æ¯ã€‘è®¢å•çŠ¶æ€ï¼š
 			<select id="status" name="status" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="all">È«²¿</option>
-			<option value="0">ÏÂµ¥Î´·¢»õ</option>
-			<option value="3">ÒÑ½áËã</option>
-			<option value="5">»Øµ¥</option>
+			<option value="all">å…¨éƒ¨</option>
+			<option value="0">ä¸‹å•æœªå‘è´§</option>
+			<option value="3">å·²ç»“ç®—</option>
+			<option value="5">å›å•</option>
 			</select> 
 			
-			&nbsp;&nbsp;&nbsp;&nbsp;¿ªµ¥ÈË£º
+			&nbsp;&nbsp;&nbsp;&nbsp;å¼€å•äººï¼š
 			<select id="kaidanren" name="kaidanren" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="all">È«²¿</option>
+			<option value="all">å…¨éƒ¨</option>
 			<?php foreach ($kaidanren as $u ):
 			echo $u;
 			endforeach;?>
 			</select>
-			&nbsp;&nbsp;&nbsp;&nbsp;·¢»õÈË£º
+			&nbsp;&nbsp;&nbsp;&nbsp;å‘è´§äººï¼š
 			<select id="fahuoren" name="fahuoren" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="all">È«²¿</option>
+			<option value="all">å…¨éƒ¨</option>
 			<?php foreach ($fahuoren as $f ):
 			echo $f;
 			endforeach;?>
 			</select>
 			
-			&nbsp;&nbsp;&nbsp;&nbsp;ÊÕ¿î·½Ê½£º
+			&nbsp;&nbsp;&nbsp;&nbsp;æ”¶æ¬¾æ–¹å¼ï¼š
 			<select id="shoukuanfs" name="shoukuanfs" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc"> 
-			<option value="">È«²¿</option>
-			<option value="²¹">²¹</option>
-			<option value="µê">µê</option>
-			<option value="ÍĞµ¥">ÍĞµ¥</option>
-			<option value="´ò¿î">´ò¿î</option>
-			<option value="Ç©µ¥">Ç©µ¥</option>
-			<option value="´úÊÕ">´úÊÕ</option>
-			<option value="ÏÖ½ğ">ÏÖ½ğ</option>
-			<option value="¿Í»§´ò¿î">¿Í»§´ò¿î</option>
+			<option value="">å…¨éƒ¨</option>
+			<option value="è¡¥">è¡¥</option>
+			<option value="åº—">åº—</option>
+			<option value="æ‰˜å•">æ‰˜å•</option>
+			<option value="æ‰“æ¬¾">æ‰“æ¬¾</option>
+			<option value="ç­¾å•">ç­¾å•</option>
+			<option value="ä»£æ”¶">ä»£æ”¶</option>
+			<option value="ç°é‡‘">ç°é‡‘</option>
+			<option value="å®¢æˆ·æ‰“æ¬¾">å®¢æˆ·æ‰“æ¬¾</option>
 			</select>
 			
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input id="tuoyunhao" name="tuoyunhao" type="text" style="width: 100px" placeholder="ÍĞÔËµ¥ºÅ£¨È«²¿£©">
+			<input id="tuoyunhao" name="tuoyunhao" type="text" style="width: 100px" placeholder="æ‰˜è¿å•å·ï¼ˆå…¨éƒ¨ï¼‰">
 			&nbsp;&nbsp;&nbsp;&nbsp;
-			<input id="danhao" name="danhao" type="text" style="width: 100px" placeholder="µ¥ºÅ£¨È«²¿£©">
-			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="beifen();" value="²éÑ¯" />
-			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-success" type="button" onClick="download();" value="ÏÂÔØ" />
+			<input id="danhao" name="danhao" type="text" style="width: 100px" placeholder="å•å·ï¼ˆå…¨éƒ¨ï¼‰">
+			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="beifen();" value="æŸ¥è¯¢" />
+			&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-success" type="button" onClick="download();" value="ä¸‹è½½" />
 			<!-- &nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type="button" onClick="beifen();" value="beicha" /> -->
 				</form>
 				</div>
