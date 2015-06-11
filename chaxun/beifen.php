@@ -47,6 +47,8 @@ $leixing;
 $style;
 $shoukuanri;
 $fhr;
+$telephone;
+$address;
 $idList = '';
 $Finish = 0;
 $Unfinish = 0;
@@ -54,28 +56,30 @@ $Final_num = 0;
 $Output = '<table class="table table-bordered table-condensed table-striped table-hover" style="font-size:5px">
 		<thead>
 		<tr>
-			<th  style="text-align:center">单号</th>
-			<th  style="text-align:center">下单时间</th>
+			<!--<th  style="text-align:center">单号</th>-->
+			<!--<th  style="text-align:center">下单时间</th>-->
 			<th  style="text-align:center">大类</th>
 			<th  style="text-align:center">产品名称</th>
 			<th  style="text-align:center">产品型号</th>
 			<th  style="text-align:center">材质</th>
 			<th  style="text-align:center">颜色</th>
 			<th  style="text-align:center">数量</th>
-			<th  style="text-align:center">单价</th>
+			<!--<th  style="text-align:center">单价</th>-->
 			<th  style="text-align:center">小计</th>
-			<th  style="text-align:center">订单状态</th>
-			<th  style="text-align:center">收款方式</th>
-			<th  style="text-align:center">托运号</th>
-			<th  style="text-align:center">托运部</th>
-			<th  style="text-align:center">发货人</th>
+			<!--<th  style="text-align:center">订单状态</th>-->
+			<!--<th  style="text-align:center">收款方式</th>-->
+			<!--<th  style="text-align:center">托运号</th>-->
+			<!--<th  style="text-align:center">托运部</th>-->
+			<!--<th  style="text-align:center">发货人</th>-->
 			<th  style="text-align:center">省</th>
 			<th  style="text-align:center">市</th>
 			<th  style="text-align:center">县/区</th>
 			<th  style="text-align:center">客户名称</th>
+			<th  style="text-align:center">客户电话</th>
+			<th  style="text-align:center">客户地址</th>
 			<th  style="text-align:center">客户负责人</th>
-			<th  style="text-align:center">开单人</th>
-			<th  style="text-align:center">收款日期</th>
+			<!--<th  style="text-align:center">开单人</th>-->
+			<!--<th  style="text-align:center">收款日期</th>-->
 		</tr>
 	</thead>
 	<tbody style="text-align:center">';
@@ -135,7 +139,7 @@ function table_kehuadd($ID){
 }
 function table_kehulist(){
 	try {
-		$sql = 'SELECT name,dqid,sheng,city,xian,tybid,pingpai,fuzheren FROM kehulist WHERE ID="'.$GLOBALS['kehuid'].'" AND name LIKE "%'.$GLOBALS['kehu'].'%" AND scname LIKE "%'.$GLOBALS['jiajucheng'].'%"';
+		$sql = 'SELECT name,telephone,address,dqid,sheng,city,xian,tybid,pingpai,fuzheren FROM kehulist WHERE ID="'.$GLOBALS['kehuid'].'" AND name LIKE "%'.$GLOBALS['kehu'].'%" AND scname LIKE "%'.$GLOBALS['jiajucheng'].'%"';
 		//echo '#'.$GLOBALS['fuzeren'];
 		$res = $GLOBALS['pdo']->query($sql);
 		if($row = $res->fetch()){
@@ -151,6 +155,8 @@ function table_kehulist(){
 			$GLOBALS['addr_xian'] = table_kehuadd($row['xian']);
 			$GLOBALS['tuoyunbu'] = $row['tybid'];
 			$GLOBALS['fuzeren'] = $row['fuzheren'];
+			$GLOBALS['telephone'] = $row['telephone'];
+			$GLOBALS['address'] = $row['address'];
 			return true;
 		}
 		return false;
@@ -215,28 +221,30 @@ function show(){
 	if($GLOBALS['shoukuanqk']=='已结算') $GLOBALS['Output'] .= '<tr class="success">';
 	else if($GLOBALS['shoukuanqk']=='下单未发货') $GLOBALS['Output'] .= '<tr class="info">';
 	else $GLOBALS['Output'] .= '<tr class="danger">';
-	$GLOBALS['Output'] .= '<td>'.$GLOBALS['danhao'].'</td>'.
-			'<td>'.$GLOBALS['time'].'</td>'.
+	$GLOBALS['Output'] .= '<!--<td>'.$GLOBALS['danhao'].'</td>-->'.
+			'<!--<td>'.$GLOBALS['time'].'</td>-->'.
 			'<td>'.$GLOBALS['leixing'].'</td>'.
 			'<td>'.$GLOBALS['name'].'</td>'.
 			'<td>'.$GLOBALS['style'].'</td>'.
 			'<td>'.$GLOBALS['caizhi'].'</td>'.
 			'<td>'.$GLOBALS['color'].'</td>'.
 			'<td>'.$GLOBALS['num'].'</td>'.
-			'<td>'.$GLOBALS['price'].'</td>'.
+			'<!--<td>'.$GLOBALS['price'].'</td>-->'.
 			'<td>'.$GLOBALS['sum'].'</td>'.
-			'<td>'.$GLOBALS['shoukuanqk'].'</td>'.
-			'<td>'.$GLOBALS['shoukuanfs'].'</td>'.
-			'<td>'.$GLOBALS['tuoyunhao'].'</td>'.
-			'<td>'.$GLOBALS['tuoyunbu'].'</td>'.
-			'<td>'.$GLOBALS['fhr'].'</td>'.
+			'<!--<td>'.$GLOBALS['shoukuanqk'].'</td>-->'.
+			'<!--<td>'.$GLOBALS['shoukuanfs'].'</td>-->'.
+			'<!--<td>'.$GLOBALS['tuoyunhao'].'</td>-->'.
+			'<!--<td>'.$GLOBALS['tuoyunbu'].'</td>-->'.
+			'<!--<td>'.$GLOBALS['fhr'].'</td>-->'.
 			'<td>'.$GLOBALS['addr_sheng'].'</td>'.
 			'<td>'.$GLOBALS['addr_shi'].'</td>'.
 			'<td>'.$GLOBALS['addr_xian'].'</td>'.
 			'<td>'.$GLOBALS['kehuname'].'</td>'.
+			'<td>'.$GLOBALS['telephone'].'</td>'.
+			'<td>'.$GLOBALS['address'].'</td>'.
 			'<td>'.$GLOBALS['fuzeren'].'</td>'.
-			'<td>'.$GLOBALS['kaidanren'].'</td>'.
-			'<td>'.$GLOBALS['shoukuanri'].'</td>'.
+			'<!--<td>'.$GLOBALS['kaidanren'].'</td>-->'.
+			'<!--<td>'.$GLOBALS['shoukuanri'].'</td>-->'.
 			'</tr>';
 	if($GLOBALS['shoukuanqk'] == '已结算') $GLOBALS['Finish'] += $GLOBALS['sum'];
 	else $GLOBALS['Unfinish'] += $GLOBALS['sum'];

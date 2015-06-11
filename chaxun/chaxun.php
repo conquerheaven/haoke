@@ -64,6 +64,7 @@ $leixing;
 $style;
 $shoukuanri;
 $fhr;
+$telephone;
 
 $Finish = 0;
 $Unfinish = 0;
@@ -91,6 +92,7 @@ $Output = '<table class="table table-bordered table-condensed table-striped tabl
 			<th  style="text-align:center">市</th>
 			<th  style="text-align:center">县/区</th>
 			<th  style="text-align:center">客户名称</th>
+			<th  style="text-align:center">客户电话</th>
 			<th  style="text-align:center">客户负责人</th>
 			<th  style="text-align:center">开单人</th>
 			<th  style="text-align:center">收款日期</th>
@@ -159,7 +161,7 @@ function table_kehuadd($ID){
 
 function table_kehulist(){
 	try {
-		$sql = 'SELECT name,dqid,sheng,city,xian,tybid,pingpai,fuzheren FROM kehulist WHERE ID="'.$GLOBALS['kehuid'].'" AND name LIKE "%'.$GLOBALS['kehu'].'%" AND scname LIKE "%'.$GLOBALS['jiajucheng'].'%"';
+		$sql = 'SELECT name,telephone,dqid,sheng,city,xian,tybid,pingpai,fuzheren FROM kehulist WHERE ID="'.$GLOBALS['kehuid'].'" AND name LIKE "%'.$GLOBALS['kehu'].'%" AND scname LIKE "%'.$GLOBALS['jiajucheng'].'%"';
 		//echo '#'.$GLOBALS['fuzeren'];
 		$res = $GLOBALS['pdo']->query($sql);
 		if($row = $res->fetch()){
@@ -175,6 +177,7 @@ function table_kehulist(){
 			$GLOBALS['addr_xian'] = table_kehuadd($row['xian']);
 			$GLOBALS['tuoyunbu'] = $row['tybid'];
 			$GLOBALS['fuzeren'] = $row['fuzheren'];
+			$GLOBALS['telephone'] = $row['telephone'];
 			return true;
 		}
 		return false;
@@ -250,6 +253,7 @@ function show(){
 			'<td>'.$GLOBALS['addr_shi'].'</td>'.
 			'<td>'.$GLOBALS['addr_xian'].'</td>'.
 			'<td>'.$GLOBALS['kehuname'].'</td>'.
+			'<td>'.$GLOBALS['telephone'].'</td>'.
 			'<td>'.$GLOBALS['fuzeren'].'</td>'.
 			'<td>'.$GLOBALS['kaidanren'].'</td>'.
 			'<td>'.$GLOBALS['shoukuanri'].'</td>'.

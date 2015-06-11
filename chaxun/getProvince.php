@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=GBK">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
 <?php
@@ -10,7 +10,7 @@ include 'ConnectDatabase.php';
 $area = $_GET['area'];
 
 try {
-	echo '<option value="all">全部</option>';
+	echo '<option value="all">鍏ㄩ儴</option>';
 	if($area=='all'){
 		exit();
 	}
